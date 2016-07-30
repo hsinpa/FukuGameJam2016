@@ -4,8 +4,8 @@ using UnityEngine.UI;
 
 public class Player : MonoBehaviour {
 
-    public float Hp;
-    public float Mana;
+    public float Hp = 100;
+    public float Mana = 0;
     public float Resou = 2;
 
     public GameObject[] towers;

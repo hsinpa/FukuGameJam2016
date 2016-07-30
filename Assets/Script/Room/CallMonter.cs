@@ -3,28 +3,16 @@ using System.Collections;
 
 public class CallMonter : MonoBehaviour {
     //public Room room;
-    public bool opendoor;
-    public Transform here;
     public GameObject monters;
-    public int v;
-    public float cd;
-    // Use this for initialization
-    void Start () {
-        
-    }
-	
-	// Update is called once per frame
-	void Update () {
-	 
-	}
-    IEnumerator MonsterIE(float waitTime)
-    {
+    public float cd = 1.5f;
+    public float maxMonster = 20;
+
+    IEnumerator MonsterIE(float waitTime) {
         yield return new WaitForSeconds(waitTime);
 
-
-        GameObject effect = Instantiate(monters, here.position, here.rotation)as GameObject;
-        if (opendoor == true)
-        {
+		GameObject effect = Instantiate(monters, transform.position, transform.rotation)as GameObject;
+		if ( true && maxMonster > 0) {	
+        	maxMonster--;
             StartCoroutine(MonsterIE(cd));
         }
     }
@@ -32,11 +20,7 @@ public class CallMonter : MonoBehaviour {
     public void open()
     {
         StartCoroutine(MonsterIE(cd));
-        opendoor = true;
     }
 
-    public void Exit()
-    {
-        opendoor = false;
-    }
+
 }

@@ -48,7 +48,8 @@ public class EditorMapGeneration : Editor {
 
 	static public void DrawLayer( JSONObject layer, GameObject gameBoard, GameObject prefab, Vector2 pos, int imageIndex, int orderIndex ) {
 		
-		//string layerTitle = layer.GetField("name").str;
+			//string layerTitle = layer.GetField("name").str;
+					string LayerName = layer.GetField("name").str;
 
 					List<JSONObject> json = layer.GetField("data").list;
 					int index =(int) json[imageIndex].n - 1;
@@ -68,6 +69,8 @@ public class EditorMapGeneration : Editor {
 							mapMaster.GetComponent<SpriteRenderer>().sprite = MapSprite[ index ];
 							mapMaster.GetComponent<SpriteRenderer>().sortingOrder = orderIndex;
 							mapMaster.transform.localScale = new Vector2(0.8f, 0.8f);
+
+							if (LayerName == "Block") mapMaster.AddComponent<BoxCollider2D>();
 					}
 		}
 

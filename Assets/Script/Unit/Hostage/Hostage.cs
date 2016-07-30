@@ -20,7 +20,7 @@ public class Hostage : NPCUnit {
 
 
 		public void Infected (int p_radius, Player player) {
-			player.Mona -= p_radius * 0.001f;
+			player.Mana -= p_radius * 0.001f;
 		}
 
 		public void VirusRangeDetect(int p_radius) {

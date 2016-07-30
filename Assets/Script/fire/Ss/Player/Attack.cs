@@ -27,14 +27,12 @@ public class Attack : MonoBehaviour {
         
 	}
 	void ms(){
-		Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);////(1)
-		RaycastHit hit;
-		if (Physics.Raycast (ray, out hit,1000f,1)){////(2)
-			if (Input.GetMouseButtonDown (0) ){
-				
-			}
+//		Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);////(1)
+//		RaycastHit hit;
+//		if (Physics.Raycast (ray, out hit,1000f,1)){////(2)
+//			if (Input.GetMouseButtonDown (0) ){
+//				
+//			}
 		}
 	
 	}
-
-}

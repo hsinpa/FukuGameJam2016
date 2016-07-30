@@ -8,7 +8,7 @@ public class Bullet : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        player = GameObject.Find("New Sprite1");
+        player = GameObject.Find("player");
 	}
 	
 	// Update is called once per frame
