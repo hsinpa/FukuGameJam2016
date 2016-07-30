@@ -3,16 +3,14 @@ using System.Collections;
 
 public class Player : MonoBehaviour {
 
-    public float Hp;
-    public float Mona;
+    public float Hp = 100;
+    public float Mona = 0;
 
-    public GameObject player;
     public GameObject bullet;
     public GameObject gun;
 
 	// Use this for initialization
 	void Start () {
-	
 	}
 	
 	// Update is called once per frame
