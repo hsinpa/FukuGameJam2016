@@ -25,7 +25,6 @@ public class Pathfinding {
 			
 			openSet.Remove(currentNode);
 			closeSet.Add (currentNode);
-			Debug.Log(currentNode.position +" , " + targetGrid.tile.position);
 
 			if (currentNode == targetGrid.tile) {
 				return RetracePath(startGrid.tile, targetGrid.tile);

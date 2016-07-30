@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using NPC;
 
 public class Game : MonoBehaviour {
 	public Map _map; 

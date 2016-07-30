@@ -3,11 +3,16 @@ using System.Collections;
 
 using System.Collections.Generic;
 using System.Linq;
+using NPC;
 
 public class Map : MonoBehaviour {
 	public static int width =10, height = 10;
 	
 	public List<Grid> grids = new List<Grid>();
+
+	public Player _player;
+	public NPCUnit _hostage;
+
 
 	public Grid FindTileByPos(Vector2 p_grid) {
 
@@ -21,5 +26,8 @@ public class Map : MonoBehaviour {
 		});
 
 	}
+
+
+
 
 }

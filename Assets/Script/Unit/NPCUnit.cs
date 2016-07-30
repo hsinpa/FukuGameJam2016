@@ -11,7 +11,7 @@ public class NPCUnit : MonoBehaviour {
 		}
 
 		public List<Vector2> paths = new List<Vector2>();
-		public float speed = 3;
+		public float speed = 0.1f;
 		public int hp = 100;
 
 		protected Pathfinding _path;
@@ -25,7 +25,9 @@ public class NPCUnit : MonoBehaviour {
 
 		public void Move(Vector3[] _path, System.Action callback=null) {
 			float time = _path.Length * speed;
-			transform.DOPath(_path, time, PathType.Linear).SetEase(Ease.Flash).OnComplete(delegate() {
+			Debug.Log(_path.Length);
+			transform.DOPath(_path, time, PathType.Linear, PathMode.TopDown2D).SetEase(Ease.Linear).OnComplete(delegate() {
+				Debug.Log("DONE");
 				if (callback != null) callback();			
 			});
 		}
