@@ -5,7 +5,7 @@ using System.Collections;
 [System.Serializable]
 public class Tile {
 	public JSONObject jsonType;
-	public bool walkable;
+	public bool walkable = true;
 	public Vector2 position;
 	public int gridX;
 	public int gridY;

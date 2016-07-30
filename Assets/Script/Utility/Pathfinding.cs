@@ -3,9 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class Pathfinding {
-	//Map mMap;
+	Map mMap;
 
-	public Pathfinding () {
+	public Pathfinding (Map _map) {
+		mMap = _map;
 	}
 		
 	public List<Tile> FindPath(Grid startGrid, Grid targetGrid) {
@@ -24,16 +25,17 @@ public class Pathfinding {
 			
 			openSet.Remove(currentNode);
 			closeSet.Add (currentNode);
+			Debug.Log(currentNode.position +" , " + targetGrid.tile.position);
+
 			if (currentNode == targetGrid.tile) {
 				return RetracePath(startGrid.tile, targetGrid.tile);
 			}
-			
+
 			foreach (Tile neighbour in GetNeighbours(currentNode)) {
 
 				if (!neighbour.walkable || closeSet.Contains(neighbour)) {
 					continue;
 				}
-
 				int newMovementCostToNeighbour = currentNode.gCost + GetDistance(currentNode, neighbour);
 				if (newMovementCostToNeighbour < neighbour.gCost || !openSet.Contains(neighbour)) {
 					neighbour.gCost = newMovementCostToNeighbour;
@@ -42,6 +44,7 @@ public class Pathfinding {
 					
 					if (!openSet.Contains(neighbour)) {
 						openSet.Add(neighbour);
+
 					}
 				}
 				
@@ -72,24 +75,22 @@ public class Pathfinding {
 		} else {
 			return 14*dstX + 10 * (dstY - dstX);
 		}
-		
-		
 	}
 
 	public List<Tile> GetNeighbours(Tile node) {
 		List<Tile> neighbours = new List<Tile>();
-//		Vector2[] directionSet = new Vector2[] {new Vector2(0, 1), new Vector2(1, 0), new Vector2(0, -1), new Vector2(-1, 0)  };
-//		foreach (Vector2 dirSet in directionSet) {
-//				int checkX = node.gridX + (int)dirSet.x;
-//				int checkY = node.gridY + (int)dirSet.y;
-//
-//				Grid grid = mMap.FindTileByPos(new Vector2(checkX, checkY ) );
-//
-//			if (checkX > 0 && checkX <= Map.width && checkY > 0 && checkY <= Map.height && grid != null &&
-//					mMap.gridManager.availableGridList.Contains(grid)) {
-//					neighbours.Add( grid.tile );
-//				}
-//		}
+		Vector2[] directionSet = new Vector2[] {new Vector2(0, 1), new Vector2(1, 0), new Vector2(0, -1), new Vector2(-1, 0)  };
+		foreach (Vector2 dirSet in directionSet) {
+				int checkX = node.gridX + (int)dirSet.x;
+				int checkY = node.gridY + (int)dirSet.y;
+
+				Grid grid = mMap.FindTileByPos(new Vector2(checkX, checkY ) );
+
+			if ( grid != null &&
+					mMap.grids.Contains(grid)) {
+					neighbours.Add( grid.tile );
+			}
+		}
 		return neighbours;
 	}
 }
