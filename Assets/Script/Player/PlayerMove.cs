@@ -4,7 +4,7 @@ using System.Collections;
 public class PlayerMove : MonoBehaviour {
 
     public float Speed;
-    public float RotSpeed;
+    //public float RotSpeed;
     public Transform Camera;
     //public float MaxSpeed;
     //private Rigidbody2D Rb2d;

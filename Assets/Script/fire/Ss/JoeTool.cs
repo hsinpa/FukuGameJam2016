@@ -7,7 +7,7 @@ public class JoeTool : MonoBehaviour {
         //Vector3 pos = new Vector2(obj.position.x, obj.position.y);
         //Vector3 p = pos - target;
         Vector3 relativePos = target - obj.position;
-        Quaternion rotation = Quaternion.LookRotation(relativePos,obj.TransformDirection(Vector3.up));
+        Quaternion rotation = Quaternion.LookRotation(relativePos,obj.up);
         obj.rotation = new Quaternion(0, 0, rotation.z, rotation.w); ;
         
     }

@@ -40,15 +40,7 @@ public class LockMonter : MonoBehaviour {
 
         if (other.tag == "Monter")
         {
-            foreach (GameObject g in monters)
-            {
-                if (g == other.gameObject)
-                {
-                    mm.Remove(g);
-                }
-
-
-            }
+            mm.Remove(other.gameObject);
         }
         
 
