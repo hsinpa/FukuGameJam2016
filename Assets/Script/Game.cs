@@ -2,14 +2,11 @@
 using System.Collections;
 
 public class Game : MonoBehaviour {
+	public Map _map; 
 
 	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
+	void Awake () {
+		_map = GameObject.Find("Map").GetComponent<Map>();
+		_map.PreSet();
 	}
 }

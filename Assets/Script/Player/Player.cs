@@ -3,9 +3,10 @@ using System.Collections;
 
 public class Player : MonoBehaviour {
 
-    public float Hp = 100;
-    public float Mona = 0;
+    public float Hp;
+    public float Mona;
 
+    public GameObject player;
     public GameObject bullet;
     public GameObject gun;
 
