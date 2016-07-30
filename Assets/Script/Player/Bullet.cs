@@ -4,11 +4,11 @@ using System.Collections;
 public class Bullet : MonoBehaviour {
 
     public float speed;
+    public int dam;
     public GameObject player;
 
 	// Use this for initialization
 	void Start () {
-
         player = GameObject.Find("player");
 	}
 	
@@ -21,4 +21,13 @@ public class Bullet : MonoBehaviour {
         }
         transform.Translate(Vector2.up * speed);
 	}
+
+	void OnTriggerEnter2D(Collider2D other)
+	{        Debug.Log(other.tag);
+
+        if (other.tag == "Monster")
+        {
+            other.GetComponent<NPC.Enemy>().hp -= dam;
+        }
+    }
 }

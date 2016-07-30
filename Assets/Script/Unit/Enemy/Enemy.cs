@@ -8,6 +8,7 @@ namespace NPC{
 		public int _speed = 1; 
 
 
+
 		public override void Start () {
 			base.Start();
 			FindTarget();
@@ -55,7 +56,7 @@ namespace NPC{
 //			transform.rotation = Quaternion.RotateTowards(transform.rotation, q, 100);
 
 
-			if (distance < 1f) {
+			if (distance < 2f) {
 				desired_velocity = Vector3.zero;
 				Attack();
 			} else {

@@ -18,6 +18,15 @@ public class Hostage : NPCUnit {
 //			Move(path);
 		}
 
+		public void SendToCenterPoint(Vector2 targetPoint) {
+			Grid c = _map.FindTileByPos(_position),
+			t = _map.FindTileByPos( targetPoint );
+			List<Tile> paths = _path.FindPath( c , t );
+			Vector3[] path = paths.ConvertAll<Vector3>(x => x.position).ToArray();
+
+			Move(path);
+		}
+
 
 		public void Infected (int p_radius, Player player) {
 			if (_game.currentStatus == Game.Status.Explore && p_radius == 2) {

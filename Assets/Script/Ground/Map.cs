@@ -11,9 +11,9 @@ public class Map : MonoBehaviour {
 	public List<Grid> grids = new List<Grid>();
 
 	public Player _player;
-	public NPCUnit _hostage;
+	public Hostage _hostage;
 
-
+	public Game _game { get { return GetComponent<Game>(); } }
 	public Grid FindTileByPos(Vector2 p_grid) {
 		return grids.Find( x=> x.gridPosition  == p_grid);
 	}

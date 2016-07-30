@@ -11,6 +11,7 @@ public class fort : MonoBehaviour {
     public Transform Barrel;
     public GameObject B_bullet;
     public GameObject B_bulletFire;
+    public ParticleSystem fx_muzzleshot;
     public Transform[] FireObjs;
     public float B_bulletSpeed;
     public float CD;
@@ -26,8 +27,11 @@ public class fort : MonoBehaviour {
 
         if (LM.monters.Length > 0)
         {
-            JoeTool.LookAt2D(Barrel,LM.monters[0].transform.position);
-            Fire();
+            if (LM.monters[0])
+            {
+                JoeTool.LookAt2D(Barrel, LM.monters[0].transform.position);
+                Fire();
+            }
         }
         
     }
@@ -41,6 +45,10 @@ public class fort : MonoBehaviour {
             foreach (Transform B_FireObj in FireObjs)
             {
                 GameObject bulle = Instantiate(B_bullet, B_FireObj.transform.position, B_FireObj.transform.rotation) as GameObject;
+              //  fx_muzzleshot.transform.position.x = fire_point[fire_point_index].position.x;
+               // fx_muzzleshot.transform.position.y = fire_point[fire_point_index].position.y;
+               // if (SHOWING_FX)
+                    fx_muzzleshot.Emit(2);
             }
         }
         

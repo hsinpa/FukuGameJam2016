@@ -5,7 +5,7 @@ public class MonsterSpawnPoint : MonoBehaviour {
     //public Room room;
     public GameObject[] monsters;
     public float cd = 1.5f;
-    public int maxMonster = 10;
+    private int maxMonster = 5;
     private Game _game;
 
   	void Start() {

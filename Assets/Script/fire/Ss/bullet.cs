@@ -7,6 +7,7 @@ public class bullet : MonoBehaviour
     public float speed;
     public float m_RotaSmooth;
     public int Damage;
+    public GameObject effect;
     // public float m_AngleSpeed=135;
     Transform playertran;
     // Use this for initialization
@@ -28,14 +29,15 @@ public class bullet : MonoBehaviour
     void OnTriggerEnter2D(Collider2D other)
     {
 
-        if (other.tag == "Monter")
+        if (other.tag == "Monster")
         {
-            other.GetComponent<NPC.NPCUnit>().hp -= Damage;
+            other.GetComponent<NPC.Enemy>().hp -= Damage;
 
         }
         if (other.tag != "Tower")
         {
             Destroy(gameObject);
+            Instantiate(effect, transform.position, transform.rotation);
         }
     }
 }

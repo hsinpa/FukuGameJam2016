@@ -15,7 +15,17 @@ public class NPCUnit : MonoBehaviour {
 
 		public List<Vector2> paths = new List<Vector2>();
 		public float speed = 0.1f;
-		public int hp = 100;
+		public int hp {
+			get {
+				return mHP;
+			}
+			set {
+				mHP = value;
+				if (mHP <= 0 ) GameObject.Destroy(this.gameObject, 0.1f);
+			}
+		}
+
+		private int mHP = 100;
 
 		protected Pathfinding _path;
 		protected Map _map; 

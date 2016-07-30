@@ -1,0 +1,231 @@
+fileFormatVersion: 2
+guid: b0f29c5d91e55d24ea08a0b1e120e6d4
+timeCreated: 1461171198
+licenseType: Store
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: ship-1
+    21300002: ship-2
+    21300004: ship-3
+    21300006: ship-4
+    21300008: ship-5
+    21300010: ship-6
+    21300012: ammo-laser-1
+    21300014: ammo-bullet-1
+    21300016: ammo-missile-1
+    21300018: ship-8
+    21300020: atlas-1_10
+    21300022: atlas-1_11
+    21300024: ship-7
+    21300026: ammo-laser-R
+    21300028: ammo-laser-G
+    21300030: ITEM
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: .25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 8
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -3
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: .5, y: .5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 200
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: ship-1
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 386
+        width: 104
+        height: 190
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: ship-2
+      rect:
+        serializedVersion: 2
+        x: 138
+        y: 389
+        width: 115
+        height: 189
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: ship-3
+      rect:
+        serializedVersion: 2
+        x: 269
+        y: 405
+        width: 155
+        height: 172
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: ship-4
+      rect:
+        serializedVersion: 2
+        x: 433
+        y: 394
+        width: 212
+        height: 176
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: ship-5
+      rect:
+        serializedVersion: 2
+        x: 660
+        y: 396
+        width: 109
+        height: 168
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: ship-6
+      rect:
+        serializedVersion: 2
+        x: 776
+        y: 372
+        width: 165
+        height: 216
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: ammo-laser-1
+      rect:
+        serializedVersion: 2
+        x: 1438
+        y: 531
+        width: 26
+        height: 57
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: ammo-bullet-1
+      rect:
+        serializedVersion: 2
+        x: 1507
+        y: 528
+        width: 23
+        height: 66
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: ammo-missile-1
+      rect:
+        serializedVersion: 2
+        x: 1555
+        y: 520
+        width: 34
+        height: 77
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: ship-8
+      rect:
+        serializedVersion: 2
+        x: 1119
+        y: 390
+        width: 110
+        height: 164
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 3, y: 0, z: 0, w: 0}
+    - name: atlas-1_10
+      rect:
+        serializedVersion: 2
+        x: 1360
+        y: 474
+        width: 88
+        height: 43
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: atlas-1_11
+      rect:
+        serializedVersion: 2
+        x: 1452
+        y: 472
+        width: 90
+        height: 45
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: ship-7
+      rect:
+        serializedVersion: 2
+        x: 958
+        y: 368
+        width: 146
+        height: 208
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: ammo-laser-R
+      rect:
+        serializedVersion: 2
+        x: 1405
+        y: 531
+        width: 26
+        height: 57
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: ammo-laser-G
+      rect:
+        serializedVersion: 2
+        x: 1374
+        y: 531
+        width: 26
+        height: 57
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: ITEM
+      rect:
+        serializedVersion: 2
+        x: 1318
+        y: 181
+        width: 243
+        height: 212
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

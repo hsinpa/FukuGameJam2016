@@ -85,7 +85,7 @@ public class Pathfinding {
 
 				Grid grid = mMap.FindTileByPos(new Vector2(checkX, checkY ) );
 
-			if ( grid != null &&
+			if ( grid != null && grid.tile.walkable &&
 					mMap.grids.Contains(grid)) {
 					neighbours.Add( grid.tile );
 			}

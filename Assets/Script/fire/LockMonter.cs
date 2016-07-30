@@ -13,22 +13,33 @@ public class LockMonter : MonoBehaviour {
    
 
     void Start () {
-        
-       // mm.Add(gameObject);
+
+        // mm.Add(gameObject);
         // monters = mm.ToArray()as GameObject[];
-        
+        InvokeRepeating("check" ,0.5f, 0.5f);
 	}
 	
 	// Update is called once per frame
 	void Update () {
-
+        
         monters = new GameObject[mm.Count];
         mm.CopyTo(monters);
     }
 
+    void check()
+    {
+        foreach(GameObject monter in monters)
+        {
+            if (!monter)
+            {
+                mm.Remove(monter);
+            }
+            
+        }
+    }
     void OnTriggerEnter2D(Collider2D other)
     {
-      if(other.tag == "Monter")
+      if(other.tag == "Monster")
         {
             mm.Add(other.gameObject);
         }
@@ -38,12 +49,12 @@ public class LockMonter : MonoBehaviour {
     void OnTriggerExit2D(Collider2D other)
     {
 
-        if (other.tag == "Monter")
+        if (other.tag == "Monster")
         {
             mm.Remove(other.gameObject);
         }
         
-
     }
 
+    
 }
