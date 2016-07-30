@@ -17,7 +17,7 @@ public class bullet : MonoBehaviour {
 	float yVelocity = 0.0F;
 	void Update () {
 		
-		transform.position += transform.forward*speed;       
+		transform.position += transform.up*speed;       
 		//transform.eulerAngles = new Vector2(0, Mathf.SmoothDampAngle(transform.eulerAngles.y,transform.eulerAngles.y +m_AngleSpeed, ref yVelocity, m_RotaSmooth));
 	}
 }

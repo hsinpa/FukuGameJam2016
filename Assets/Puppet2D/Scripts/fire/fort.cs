@@ -11,7 +11,7 @@ public class fort : MonoBehaviour {
     public Transform Barrel;
     public GameObject B_bullet;
     public GameObject B_bulletFire;
-    public Transform[] FireOBJs;
+    public Transform[] FireObjs;
     public float B_bulletSpeed;
     public float CD;
     float fire_CD_Time;
@@ -38,7 +38,7 @@ public class fort : MonoBehaviour {
         {
            
             fire_CD_Time = Time.time + CD;
-            foreach (Transform B_FireObj in FireOBJs)
+            foreach (Transform B_FireObj in FireObjs)
             {
                 GameObject bulle = Instantiate(B_bullet, B_FireObj.transform.position, B_FireObj.transform.rotation) as GameObject;
             }
