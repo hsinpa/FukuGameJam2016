@@ -13,7 +13,7 @@ public class Map : MonoBehaviour {
 
 	}
 
-	public Grid FindGrid(Vector2 grid) {
+	/*public Grid FindGrid(Vector2 grid) {
 		grids.
-	}
+	}*/
 }
