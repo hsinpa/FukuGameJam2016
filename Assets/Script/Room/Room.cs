@@ -3,7 +3,6 @@ using System.Collections;
 
 public class Room : MonoBehaviour {
 
-	public Door[] door;
-	public Vector2 centerPoint;
-
+	Door[] door;
+	Vector2 centerPoint;
 }

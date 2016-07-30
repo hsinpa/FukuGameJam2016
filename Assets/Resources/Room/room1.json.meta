@@ -1,6 +1,10 @@
 fileFormatVersion: 2
 guid: bf14c1141f17748eba996f229f6e4a69
+<<<<<<< HEAD:Assets/Resources/Room/room1.json.meta
+timeCreated: 1469879433
+=======
 timeCreated: 1469882437
+>>>>>>> Paul:Assets/Resources/Room/room1.json.meta
 licenseType: Free
 TextScriptImporter:
   userData: 
