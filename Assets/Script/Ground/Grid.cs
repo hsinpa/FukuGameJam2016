@@ -4,9 +4,13 @@ using System.Collections;
 public class Grid : MonoBehaviour {
 	public enum Status {Idle, Move, Attack }
 
-    public Vector2 gridPosition;
+    public Vector2 gridPosition { 
+    	get {
+    		return new Vector2( transform.position.x, transform.position.y );
+    	}
+    }
     public Tile tile;
-	public bool canMove;
+	public bool canMove = true;
 
 	//For PathFinding
 	public float costSoFar = 0;
