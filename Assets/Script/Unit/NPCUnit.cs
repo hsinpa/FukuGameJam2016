@@ -10,16 +10,21 @@ public class NPCUnit : MonoBehaviour {
 			}
 		}
 
+		public enum UnitLocation { Corridor, Room } 
+		public UnitLocation currentLocation = UnitLocation.Room;
+
 		public List<Vector2> paths = new List<Vector2>();
 		public float speed = 0.1f;
 		public int hp = 100;
 
 		protected Pathfinding _path;
 		protected Map _map; 
+		protected Game _game; 
 
 		public virtual void Start() {
 			_map = GameObject.Find("Map").GetComponent<Map>();
 			_path = new Pathfinding(_map );
+			_game = _map.GetComponent<Game>();
 		}
 
 

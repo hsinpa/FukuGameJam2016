@@ -5,7 +5,7 @@ using System.Collections.Generic;
 namespace NPC{
 
 public class Hostage : NPCUnit {
-		private int[] mvirusRange = new int[] { 3, 6, 9}; 
+		private int[] mvirusRange = new int[] { 1, 2, 3}; 
 
 		// Use this for initialization
 		public override void Start () {
@@ -20,13 +20,20 @@ public class Hostage : NPCUnit {
 
 
 		public void Infected (int p_radius, Player player) {
-			player.Mana -= p_radius * 0.001f;
+			if (_game.currentStatus == Game.Status.Explore && p_radius == 2) {
+				_game.currentStatus = Game.Status.SaveHostage;
+
+				Debug.Log("To Hostage Mode");
+			}
+
+			if (_game.currentStatus == Game.Status.SaveHostage) {
+				player.FireWallBreakPoint -= p_radius * 0.01f;
+			}
 		}
 
 		public void VirusRangeDetect(int p_radius) {
 			//Attack per second
 			Collider2D collides = Physics2D.OverlapCircle( _position, p_radius, GeneralSetting.unitLayer );
-
 			if (collides != null && collides.tag == "Player") {
 				Infected(p_radius, collides.GetComponent<Player>());
 			}

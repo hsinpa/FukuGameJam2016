@@ -33,6 +33,9 @@ public class bullet : MonoBehaviour
             other.GetComponent<NPC.NPCUnit>().hp -= Damage;
 
         }
-        Destroy(gameObject);
+        if (other.tag != "Tower")
+        {
+            Destroy(gameObject);
+        }
     }
 }

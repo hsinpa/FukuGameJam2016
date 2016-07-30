@@ -5,9 +5,14 @@ using NPC;
 public class Game : MonoBehaviour {
 	public Map _map; 
 
+	public enum Status { Explore, SaveHostage } 
+	public Status currentStatus = Status.Explore;
+
 	// Use this for initialization
 	void Awake () {
-		_map = GameObject.Find("Map").GetComponent<Map>();
+		_map = GetComponent<Map>();
 		_map.PreSet();
 	}
+
+
 }

@@ -59,7 +59,6 @@ public class EditorMapGeneration : Editor {
 							mapMaster.transform.parent =  gameBoard.transform;
 							mapMaster.layer = 9;
 							Grid gridScript = mapMaster.GetComponent<Grid>();
-							gridScript.tile = new Tile(gridScript.gridPosition, (int)pos.x, (int)pos.y, layer.GetField("properties"));
 
 							//mapMaster.GetComponent<BoxCollider2D>().enabled = true;
 							mapMaster.name = pos.ToString();

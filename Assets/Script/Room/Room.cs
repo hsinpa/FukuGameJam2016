@@ -3,27 +3,7 @@ using System.Collections;
 
 public class Room : MonoBehaviour {
 
-    
-    public CallMonter[] cms;
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+	public Door[] door;
+	public Vector2 centerPoint;
 
-    void OnTriggerEnter2D(Collider2D other)
-    {
-     if (other.tag == "Player")
-        {
-            foreach(CallMonter cm in cms)
-            {
-                cm.open(); 
-            }
-        }
-
-    }
 }

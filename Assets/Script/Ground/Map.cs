@@ -15,7 +15,6 @@ public class Map : MonoBehaviour {
 
 
 	public Grid FindTileByPos(Vector2 p_grid) {
-
 		return grids.Find( x=> x.gridPosition  == p_grid);
 	}
 
