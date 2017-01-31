@@ -6,9 +6,19 @@ using UnityEditor;
 
 public class EditorMapGeneration : Editor {
 	static Sprite[] MapSprite;
-	
+
+	[MenuItem ("Editor/Reset Grid Pos")]
+	static void ResetGridPos () {
+		GameObject gameBoard =  GameObject.Find("Map");
+		Grid[] grids = gameBoard.GetComponentsInChildren<Grid>();
+
+		foreach (Grid g in grids) {
+			g.transform.position = new Vector2(Mathf.RoundToInt(g.transform.position.x), Mathf.RoundToInt(g.transform.position.y)  );
+		}
+	}
+
 	[MenuItem ("Editor/Generate Map")]
-	static void DoSomethingWithAShortcutKey () {
+	static void GenerateMap () {
 
 		MapSprite = Resources.LoadAll<Sprite>("Room/room_demo");
 		TextAsset[] mapData = Resources.LoadAll<TextAsset>("Room");
@@ -17,8 +27,6 @@ public class EditorMapGeneration : Editor {
 			JSONObject mapJson = new JSONObject(textAsset.ToString());
 			int height = (int) mapJson.GetField("height").n, width = (int)mapJson.GetField("width").n;
 			DrawMap( mapJson.GetField("layers").list, height, width );
-
-
 		}
 
 
@@ -29,15 +37,15 @@ public class EditorMapGeneration : Editor {
 		GameObject roomPrefab = Resources.Load<GameObject>("Prefab/EmptyRoom");
 
 		GameObject gameBoard =  GameObject.Find("Map");
-//		GameObject roomBoard = Instantiate(roomPrefab, new Vector3(width/2, height/2, 0), prefab.transform.rotation) as GameObject;
-//		roomBoard.transform.SetParent( gameBoard.transform );
+		GameObject roomBoard = Instantiate(roomPrefab, new Vector3(width/2, height/2, 0), prefab.transform.rotation) as GameObject;
+		roomBoard.transform.SetParent( gameBoard.transform );
 		for (int order = 0; order < layers.Count; order++ ) {
 			int i = 0;
 			
 			for (int y = height; y > 0; y-- ) {
 				for (int x = 1; x <= width; x++ ) {
 					if (layers[order].GetField("type").str == "tilelayer") {
-						DrawLayer(layers[order], gameBoard, prefab, new Vector2(x,y), i, order);
+						DrawLayer(layers[order], roomBoard, prefab, new Vector2(x,y), i, order);
 					}
 
 					i++;
@@ -69,7 +77,10 @@ public class EditorMapGeneration : Editor {
 							mapMaster.GetComponent<SpriteRenderer>().sortingOrder = orderIndex;
 							mapMaster.transform.localScale = new Vector2(0.8f, 0.8f);
 
-							if (LayerName == "Block") mapMaster.AddComponent<BoxCollider2D>();
+							if (LayerName == "Wall") {
+								 mapMaster.AddComponent<BoxCollider2D>();
+								 gridScript.canMove = false;
+							}	
 					}
 		}
 

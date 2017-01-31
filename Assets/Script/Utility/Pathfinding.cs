@@ -4,13 +4,11 @@ using System.Collections.Generic;
 
 public class Pathfinding {
 	Map mMap;
-
 	public Pathfinding (Map _map) {
 		mMap = _map;
 	}
 		
 	public List<Tile> FindPath(Grid startGrid, Grid targetGrid) {
-
 		List<Tile> openSet = new List<Tile>();
 		HashSet<Tile> closeSet = new HashSet<Tile>();
 		openSet.Add(startGrid.tile);
@@ -27,16 +25,19 @@ public class Pathfinding {
 			closeSet.Add (currentNode);
 
 			if (currentNode == targetGrid.tile) {
+				Debug.Log("HELLO");
 				return RetracePath(startGrid.tile, targetGrid.tile);
 			}
 
 			foreach (Tile neighbour in GetNeighbours(currentNode)) {
+                Grid neightGrid = mMap.FindTileByPos(neighbour.position);
 
-				if (!neighbour.walkable || closeSet.Contains(neighbour)) {
+                if (!neightGrid.canMove || closeSet.Contains(neighbour)) {
 					continue;
 				}
 				int newMovementCostToNeighbour = currentNode.gCost + GetDistance(currentNode, neighbour);
 				if (newMovementCostToNeighbour < neighbour.gCost || !openSet.Contains(neighbour)) {
+
 					neighbour.gCost = newMovementCostToNeighbour;
 					neighbour.hCost = GetDistance(neighbour, targetGrid.tile);
 					neighbour.parent = currentNode;
@@ -85,7 +86,7 @@ public class Pathfinding {
 
 				Grid grid = mMap.FindTileByPos(new Vector2(checkX, checkY ) );
 
-			if ( grid != null && grid.tile.walkable &&
+			if ( grid != null && grid.canMove &&
 					mMap.grids.Contains(grid)) {
 					neighbours.Add( grid.tile );
 			}

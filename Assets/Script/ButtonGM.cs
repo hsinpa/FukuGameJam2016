@@ -7,15 +7,10 @@ public class ButtonGM : MonoBehaviour {
     public string MainMeun;
     public string This;
 
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frameb
-	void Update () {
-	
-	}
+    public AudioSource AS;
+    public AudioClip[] SX;
+
+
 
     public void St()
     {
@@ -30,5 +25,17 @@ public class ButtonGM : MonoBehaviour {
     public void Exit()
     {
         Application.Quit();
+    }
+
+    public void Hil()
+    {
+        AudioSource A = gameObject.GetComponent<AudioSource>();
+        A.PlayOneShot(SX[0]);
+    }
+
+    public void Pre()
+    {
+        AudioSource A = gameObject.GetComponent<AudioSource>();
+        A.PlayOneShot(SX[1]);
     }
 }

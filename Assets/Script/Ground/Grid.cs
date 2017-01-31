@@ -2,8 +2,8 @@
 using System.Collections;
 
 public class Grid : MonoBehaviour {
-	public enum Status {Idle, Move, Attack }
-
+	public Room mRoom { get {return GetComponentInParent<Room>(); } }
+	 
     public Vector2 gridPosition { 
     	get {
     		return new Vector2( transform.position.x, transform.position.y );

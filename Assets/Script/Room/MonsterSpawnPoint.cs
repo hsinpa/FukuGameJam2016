@@ -3,31 +3,33 @@ using System.Collections;
 
 public class MonsterSpawnPoint : MonoBehaviour {
     //public Room room;
-    public GameObject[] monsters;
-    public float cd = 1.5f;
-    private int maxMonster = 5;
-    private Game _game;
+    private GameObject[] monsters;
+    private float cd = 0.2f;
 
-  	void Start() {
-		_game = GameObject.Find("Map").GetComponent<Game>();
+    private Game _game;
+	private Room _room;
+
+    public void PointActivate(Room p_room, Game p_game ) {
 		monsters = Resources.LoadAll<GameObject>("Prefab/Enemy");
+		_game = p_game;
+		_room = p_room;
     }
 
-    IEnumerator MonsterIE(float waitTime) {
-        yield return new WaitForSeconds(waitTime);
-		GameObject monster = monsters[ Random.Range(0, monsters.Length) ];
-		GameObject effect = Instantiate(monster, transform.position, transform.rotation)as GameObject;
-		if ( true && maxMonster > 0) {
-        	maxMonster--;
-            StartCoroutine(MonsterIE(cd));
+    public IEnumerator SpawnMonster() {
+        yield return new WaitForSeconds(cd);
+		GameObject monsterPrefab = monsters[ Random.Range(0, monsters.Length) ];
+		GameObject effect = Instantiate(monsterPrefab, transform.position, transform.rotation)as GameObject;
+		effect.transform.SetParent( _game.transform.FindChild("Unit/Enemies") );
+
+		_game._map.enemyList.Add(effect);
+		if (_room.currentMonsterNum > 0) {
+			_room.currentMonsterNum--;
+            StartCoroutine(SpawnMonster());
+        } 
+        else {
+            //StartCoroutine(_game._map.DoorSwitch(false));
+            _room.r_state = Room.RoomState.Explored;
         }
     }
-
-    public void open()
-    {	
-		if (_game.currentStatus == Game.Status.SaveHostage) maxMonster = maxMonster * 2;
-        StartCoroutine(MonsterIE(cd));
-    }
-
 
 }

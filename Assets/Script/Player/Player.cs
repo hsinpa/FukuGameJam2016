@@ -4,19 +4,37 @@ using UnityEngine.UI;
 
 public class Player : MonoBehaviour {
 
-    public float Hp = 100;
+    public int hp_point;
 	public float FireWallBreakPoint = 0;
     public float Resou = 2;
 
-    public Image HpBar;
+    private Grid currentGrid;
+	private Room currentRoom;
+
+    public GameObject[] HpObj;
+    //public Image HpBar;
     public Image ManaBar;
+    public Text ResT;
 
     public GameObject[] towers;
     public GameObject towerset;
     //public GameObject player;
+    public float cd=0.5f;
+    float tt =0;
     public GameObject bullet;
-    public GameObject gun;
+    public GameObject bulletFire;
+    public ParticleSystem fx_muzzleshot;
     public GameObject Die;
+
+    public GameObject DieUI;
+    public GameObject PasUI;
+
+    public AudioSource TowerAs;
+    public AudioClip[] TowerSo;
+
+    private float restoreDelay = 0.5f;
+    public float cRestoreDelay;
+    private float restorePoint = 1f;
 
     //public GameObject TI1;
     //public GameObject TI2;
@@ -42,32 +60,76 @@ public class Player : MonoBehaviour {
 	public Map _map;
     // Use this for initialization
     void Start () {
-		_map = GameObject.Find("Map").GetComponent<Map>();
+        Time.timeScale = 1f;
+        _map = GameObject.Find("Map").GetComponent<Map>();
+
+		hp_point = HpObj.Length;
 	}
 
 	
 	// Update is called once per frame
 	void Update ()
     {
-       // HpBar.fillAmount = Hp / 100;
-		//ManaBar.fillAmount = FireWallBreakPoint / 100;
+        ManaBar.fillAmount = FireWallBreakPoint / 100;
 
-		if (Hp <= 0 || FireWallBreakPoint >= 100)
+        ResT.text = Resou.ToString();
+
+		if (hp_point <= 0 || FireWallBreakPoint >= 100)
         {
-            Hp = 0;
-			FireWallBreakPoint = 100;
-            Die.SetActive(true);                                   
+            hp_point = 0;
+            //FireWallBreakPoint = 100;
+            Die.SetActive(true);
+            StartCoroutine(_map._game.GameOver());
+            //Destroy(PasUI);
         }
-
-        if (Input.GetKeyDown(KeyCode.Space))
+        
+		if ( Input.GetMouseButton(0) && Time.time>tt)
         {
-            Instantiate(bullet, gun.transform.position, gun.transform.rotation);
+            Instantiate(bullet, transform.position+ (transform.up), transform.rotation);
+            fx_muzzleshot.Emit(1);
+            tt = Time.time + cd;
+           // Instantiate(bulletFire, gun.transform.position, gun.transform.rotation);
         }
 
         TowerM();
+        RestoreBreakPoint();
 
-	}
+        //Check Location
+		Grid mGrid = _map.FindTileByPos( new Vector2( Mathf.RoundToInt(transform.position.x), Mathf.RoundToInt(transform.position.y)) );
+		if (mGrid != null) {
+			if (mGrid.mRoom != currentRoom && mGrid.mRoom.r_type == Room.RoomType.Room) {
+				mGrid.mRoom.RaiseAlarm();
+				if (_map._game.currentStatus == Game.Status.SaveHostage) _map._hostage.SendToCenterPoint(mGrid.mRoom.CenterPoint.tile.position);
+			}
+			currentRoom = mGrid.mRoom;
+		}
 
+
+    }
+
+	public void Damage() {
+		if (hp_point > 0) {
+			HpObj[hp_point - 1].SetActive(false);
+        	hp_point--;
+		}
+    }
+
+
+    public GameObject was;
+
+    public void RestoreBreakPoint() {
+        if (cRestoreDelay > Time.time) return;
+        cRestoreDelay = Time.time + restoreDelay;
+
+        if (FireWallBreakPoint > 0)
+        {
+            was.SetActive(false);
+            FireWallBreakPoint -= restorePoint;
+        }
+
+    }
+
+   
     void TowerM()
     {
         //int A = 0;
@@ -83,45 +145,65 @@ public class Player : MonoBehaviour {
 
         if (Input.GetKeyDown(KeyCode.Escape) && T1 == false && T2 == false && pasued == false)
         {
-            Die.SetActive(true);
+            Time.timeScale = 0f;
+            PasUI.SetActive(true);
+            //Die.SetActive(true);
             pasued = true;
         }
         else if (Input.GetKeyDown(KeyCode.Escape) && T1 == false && T2 == false && pasued == true)
         {
-            Die.SetActive(false);
+            //Die.SetActive(false);
+            Time.timeScale = 1f;
+            PasUI.SetActive(false);
             pasued = false;
         }
         else if (Input.GetKeyDown(KeyCode.Escape))
         {
-            //UIAni.SetTrigger("Back");
+            UIAni.SetTrigger("Back");
+            AudioSource SF = TowerAs.GetComponent<AudioSource>();
+            SF.PlayOneShot(TowerSo[1]);
             T1 = false;
             T2 = false;
         }
 
-        if (Input.GetKeyDown(KeyCode.Alpha1))
+        if (Resou >= 1)
         {
-            //UIAni.SetTrigger("Event1");
-            T1 = true;
-            T2 = false;
+            if (Input.GetKeyDown(KeyCode.Alpha1))
+            {
+                UIAni.SetTrigger("T1");
+//                AudioSource SF = TowerAs.GetComponent<AudioSource>();
+//                SF.PlayOneShot(TowerSo[0]);
+                Instantiate(towers[0], towerset.transform.position, towerset.transform.rotation);
+                Resou--;
+                T1 = true;
+                T2 = false;
+            }
         }
 
-        if (Input.GetKeyDown(KeyCode.Alpha2))
+        if (Resou >= 2)
         {
-            //UIAni.SetTrigger("Event2");
-            T1 = false;
-            T2 = true;
+            if (Input.GetKeyDown(KeyCode.Alpha2))
+            {
+                UIAni.SetTrigger("T2");
+//                AudioSource SF = TowerAs.GetComponent<AudioSource>();
+//                SF.PlayOneShot(TowerSo[0]);
+
+                Instantiate(towers[1], towerset.transform.position, towerset.transform.rotation);
+                Resou -= 2;
+
+                T1 = false;
+                T2 = true;
+            }
         }
 
         if (Input.GetKeyDown(KeyCode.Q) && T1 == true && Build == true)
         {
-            Instantiate(towers[0], towerset.transform.position, towerset.transform.rotation);
-            Resou--;
+
         }
 
         if (Input.GetKeyDown(KeyCode.Q) && T2 == true && Build == true)
         {
-            Instantiate(towers[1], towerset.transform.position, towerset.transform.rotation);
-            Resou--;
+
         }
     }
 
